@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/style.css">
+    <title>tax-Calculator</title>
+</head>
+
+<body>
+    <div class="header">
+        <p>black zero</p>
+      </div>
+    <section class="salary-output">
+        <section class="salary">
+            <div class="row">
+                <div class="text">
+                    PAY PERIOD :
+                </div>
+                <form action="">
+                    <input type="checkbox" name="period" id="month" onclick="onlyOne(this)">
+                    <label for="">MONTH</label>
+
+                    <input type="checkbox" name="period" id="year" onclick="onlyOne(this)">
+                    <label for="">YEAR</label>
+                </form>
+            </div>
+            <div class="row">
+                <div class="text">
+                    BASIC SALARY :
+                </div>
+                <div class="salaryKSH">
+                    <input type="text" name="my-input" id="ksh" value="">
+                </div>
+            </div>
+            <div class="row">
+                <div class="text">
+                    BENEFITS(BONUS ALLOWANCE) :
+                </div>
+                <div class="salaryKSH">
+                    <input type="text" name="my-input" id="kshbonus" value="">
+                </div>
+            </div>
+            <div class="row">
+                <div class="text">
+                    DEDUCT NHIF
+                </div>
+                <form action="">
+                    <input type="checkbox" name="nhif" id="yesnhif" onclick="checknhif(this)">
+                    <label for="">YES</label>
+
+                    <input type="checkbox" name="nhif" id="nonhif" onclick="checknhif(this)">
+                    <label for="year">NO</label>
+                </form>
+            </div>
+            <div class="row">
+                <div class="text">
+                    NSSF RATES
+                </div>
+                <div>
+                    <div>
+                        <input type="checkbox" name="nssf" id="newnssf" onclick="checknssf(this)">
+                        <label for=''>NEW NSSF RATES (TIERED)</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="nssf" id="oldnssf" onclick="checknssf(this)">
+                        <label for="year">OLD NSSF RATES (KSH2000)</label>
+                    </div>
+                </div>
+
+            </div>
+            <br>
+            <div class="row">
+                <div class="text">
+                    DEDUCT NSSF :
+                </div>
+                <form action="">
+                    <input type="checkbox" name="yesno" id="yesnssf" onclick="yesOrNonssf(this)">
+                    <label for="">YES</label>
+
+                    <input type="checkbox" name="yesno" id="nonssf" onclick="yesOrNonssf(this)">
+                    <label for="year">NO</label>
+                </form>
+            </div>
+            <button id="button">
+                Calculate
+            </button>
+        </section>
+        <section class="output">
+            <div class="row-output">
+                <div class="column-1">
+                    INCOME BEFORE PENSION DEDUCTION
+                </div>
+                <div class="column-2" >
+                    <p>KSH <span id="income">00</span></p>
+                </div>
+
+            </div>
+            <div class="row-output">
+                <div class="column-1">
+                    DEDUCTIBLE NSSF PENSION CONTRIBUTION
+                </div>
+                <div class="column-2" id="nssf">
+                    <p>KSH <span id="nssfOut">00</span></p>
+
+                </div>
+            </div>
+            <div class="row-output">
+                <div class="column-1">
+                    INCOME AFTER PENSION DEDUCTIONS
+                </div>
+                <div class="column-2" id="incomeSubPension">
+                    <p>KSH <span id="incomeAfterPension">00</span></p>
+
+                </div>
+            </div>
+            <div class="row-output">
+                <div class="column-1">
+                    BENEFITS IN KIND
+                </div>
+                <div class="column-2" >
+                    <p>KSH <span id="benefits" >00</span></p>
+                </div>
+            </div>
+            <div class="row-output">
+                <div class="column-1">
+                    TAXABLE INCOME
+                </div>
+                <div class="column-2" id="taxedIncome">
+                    <p>KSH <span id="taxincome">00</span></p>
+                </div>
+            </div>
+            <div class="row-output">
+                <div class="column-1">
+                    TAX ON TAXABLE INCOME
+                </div>
+                <div class="column-2">
+                    <p>KSH <span id="taxPayed">00</span></p>
+                </div>
+            </div>
+            <div class="row-output">
+                <div class="column-1">
+                    PERSONAL RELIEF
+                </div>
+                <div class="column-2">
+                    <p>KSH <span id="relief">00</span></p>
+                </div>
+            </div>
+            <div class="row-output">
+                <div class="column-1">
+                    TAX NET OFF RELIEF
+                </div>
+                <div class="column-2">
+                    <p>KSH <span id="taxreleif">00</span></p>
+                </div>
+            </div>
+            <div class="row-output">
+                <div class="column-1">
+                    PAYE
+                </div>
+                <div class="column-2">
+                    <p>KSH <span id="paye">00</span></p>
+                </div>
+            </div>
+            <div class="row-output">
+                <div class="column-1">
+                    CHARGEABLE INCOME
+                </div>
+                <div class="column-2">
+                    <p>KSH <span id="chargeable">00</span></p>
+                </div>
+            </div>
+            <div class="row-output">
+                <div class="column-1">
+                    NHIF CONTRIBUTION
+                </div>
+                <div class="column-2">
+                    <p>KSH <span id="nhifOut">00</span></p>
+                </div>
+            </div>
+            <div class="row-output">
+                <div class="column-1">
+                    NET 
+                </div>
+                <div class="column-2">
+                    <p>KSH <span id="net">00</span></p>
+            </div>
+        </section>
+    </section>
+    <script src="./assets/main.js"></script>
+    <footer>
+        <p>all rights reserved @2022 <a href="#">Larrymax</a></p>
+      </footer>
+</body>
+
+</html>
